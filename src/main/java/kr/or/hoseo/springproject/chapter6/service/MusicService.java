@@ -6,7 +6,7 @@ import kr.or.hoseo.springproject.chapter6.vo.Music;
 
 public interface MusicService {
 	public List<Music> getAllMusics();
-	public Music addMusic(Music music);
+	public boolean addMusic(Music music);
 	public boolean deleteMusic(Music music);
 	public boolean updateMusic(Music music);
 }
