@@ -17,9 +17,9 @@ public class MusicServiceImpl implements MusicService{
 	}
 
 	@Override
-	public Music addMusic(Music music) {
+	public boolean addMusic(Music music) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
