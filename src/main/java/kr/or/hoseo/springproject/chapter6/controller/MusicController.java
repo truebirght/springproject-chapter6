@@ -2,6 +2,8 @@ package kr.or.hoseo.springproject.chapter6.controller;
 
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.hoseo.springproject.chapter6.service.MusicService;
 import kr.or.hoseo.springproject.chapter6.vo.Music;
@@ -40,6 +44,7 @@ public class MusicController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(@ModelAttribute("music") Music music, BindingResult result) {
 		musicService.addMusic(music);
-		return "list";
+		return "redirect:list";
 	}
+
 }

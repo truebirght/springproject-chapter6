@@ -13,7 +13,7 @@
 	<form:form method="POST" action="add" modelAttribute="music">
 	<table>
 		<tr>
-			<td><form:label path="title">제목</form:label></td>
+			<td><form:label path="title" cssErrorClass="">제목</form:label></td>
 			<td><form:input path="title"/></td>
 		</tr>
 		<tr>
