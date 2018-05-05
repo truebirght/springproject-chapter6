@@ -35,6 +35,7 @@ public class JdbcConfig {
 	private String testQuery;
 
 	@Bean
+	@Profile("!test")
 	public DataSource dataSource() {
 		HikariConfig config = new HikariConfig();
 		config.setJdbcUrl(url);
@@ -53,7 +54,9 @@ public class JdbcConfig {
 	public DataSource h2DataSource() {
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
 		return builder.setType(EmbeddedDatabaseType.HSQL) // .H2 or .DERBY
-				.addScript("create-table.sql").addScript("insert-samples.sql").build();
+				.addScript("sql/create-table.sql")
+				//.addScript("insert-samples.sql")
+				.build();
 	}
 
 	@Bean

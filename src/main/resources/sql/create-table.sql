@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS musics(
+title VARCHAR(255) NOT NULL,
+artist VARCHAR(255),
+uploaddttm DATETIME,
+views INTEGER,
+likes INTEGER,
+unlikes INTEGER,
+url VARCHAR(255),
+thumbnailpath VARCHAR(4096),
+CONSTRAINT pk PRIMARY KEY(title)
+);

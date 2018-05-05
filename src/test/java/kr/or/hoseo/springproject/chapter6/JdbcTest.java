@@ -3,7 +3,9 @@ package kr.or.hoseo.springproject.chapter6;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.AnnotationConfigWebContextLoader;
@@ -13,6 +15,7 @@ import kr.or.hoseo.springproject.chapter6.config.AppConfig;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
+@ActiveProfiles("test")
 @ContextConfiguration(classes = AppConfig.class, loader = AnnotationConfigWebContextLoader.class)
 public class JdbcTest {
 
@@ -21,7 +24,7 @@ public class JdbcTest {
 	
 	@Test
 	public void test() {
-		
+		//TODO
 	}
 
 }
