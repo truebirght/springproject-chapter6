@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,7 +61,10 @@ public class MusicController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(@ModelAttribute("music") Music music, BindingResult result) {
+	public String add(@Valid @ModelAttribute("music") Music music, BindingResult result) {
+		if(result.hasErrors()) {
+			return "add";
+		}
 		musicService.addMusic(music);
 		return "redirect:list";
 	}

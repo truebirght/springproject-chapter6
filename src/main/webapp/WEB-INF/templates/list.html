@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>목록</title>
+</head>
+<body>
+	<a href="add">추가하기</a>
+	<table>
+		<tr>
+			<th>제목</th>
+			<th>아티스트</th>
+			<th>업로드일자</th>
+			<th>미리보기 URL</th>
+		</tr>
+		<tr th:each="item : ${list}">
+			<td th:text="${item.title}"></td>
+			<td th:text="${item.artist}"></td>
+			<td th:text="${item.uploadDttm}"></td>
+			<td th:text="${item.url}"></td>
+		</tr>
+	</table>
+</body>
+</html>

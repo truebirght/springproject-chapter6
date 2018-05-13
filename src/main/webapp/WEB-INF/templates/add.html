@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>추가</title>
+</head>
+<style>
+.fieldError {
+	color: red;
+}
+</style>
+<body>
+	<form th:action="@{/add}" th:object="${music}" method="POST" >
+	<table>
+		<tr>
+			<td th:class="${#fields.hasErrors('title')}? fieldError">제목</td>
+			<td><input type="text" th:field="*{title}"></td>
+		</tr>
+		<tr>
+			<td th:class="${#fields.hasErrors('artist')}? fieldError">아티스트</td>
+			<td><input type="text" th:field="*{artist}"></td>
+		</tr>
+		<tr>
+			<td th:class="${#fields.hasErrors('url')}? fieldError">미리보기 URL</td>
+			<td><input type="text" th:field="*{url}"></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="submit" value="저장"></td>
+		</tr>
+	</table>
+	</form>
+</body>
+</html>

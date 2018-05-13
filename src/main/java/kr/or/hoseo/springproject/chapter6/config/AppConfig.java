@@ -17,19 +17,11 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @ComponentScan("kr.or.hoseo.springproject.chapter6")
 public class AppConfig extends WebMvcConfigurerAdapter {
-	@Bean
-	public ViewResolver getViewResolver() {
-		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix("/WEB-INF/views/");
-		resolver.setSuffix(".jsp");
-		return resolver;
-	}
-
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
-
+	
 	@Configuration
 	@PropertySource(value = { "classpath:properties/defaults.properties" })
 	static class Defaults {
