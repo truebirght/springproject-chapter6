@@ -12,4 +12,5 @@ import kr.or.hoseo.springproject.chapter6.vo.Music;
 public interface MusicDao {
 	public List<Music> getAllMusics();
 	public int insertMusic(Music music);
+	public int getMusicCount();
 }

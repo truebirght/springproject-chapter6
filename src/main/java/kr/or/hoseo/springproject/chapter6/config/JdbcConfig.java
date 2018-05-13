@@ -2,6 +2,7 @@ package kr.or.hoseo.springproject.chapter6.config;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -46,9 +47,20 @@ public class JdbcConfig {
 		}
 		return new HikariDataSource(config);
 	}
+	
+	@Bean
+	public DataSource dbcpDataSource() {
+		BasicDataSource ds = new BasicDataSource();
+		ds.setUrl(url);
+		ds.setUsername(username);
+		ds.setPassword(password);
+		ds.setDriverClassName(driverClassName);
+		ds.setValidationQuery(testQuery);
+		return ds;
+	}
 
 	@Bean
-	//@Profile("test")
+	@Profile("test")
 	@Primary
 	public DataSource h2DataSource() {
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
