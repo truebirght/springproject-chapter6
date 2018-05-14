@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 public class AppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public ViewResolver getViewResolver() {
+		//자바파일 바뀌면 빌드하려나..
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");
