@@ -30,7 +30,7 @@
 				<td>${item.likes}</td>
 				<td>${item.unlikes}</td>
 				<td>${item.url}</td>
-				<td><img src="${item.tdumbnailPatd}" /></td>
+				<td><img src="${item.thumbnailPath}" /></td>
 			</tr>
 		</c:forEach>
 	</table>

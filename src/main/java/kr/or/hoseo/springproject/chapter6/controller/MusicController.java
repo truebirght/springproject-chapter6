@@ -2,6 +2,8 @@ package kr.or.hoseo.springproject.chapter6.controller;
 
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,8 +40,12 @@ public class MusicController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(@ModelAttribute("music") Music music, BindingResult result) {
+	public String add(@Valid @ModelAttribute("music") Music music, BindingResult result) {
+		if (result.hasErrors()) {
+	         return "add";
+	      }
+		
 		musicService.addMusic(music);
-		return "list";
+		return "redirect:list";
 	}
 }
