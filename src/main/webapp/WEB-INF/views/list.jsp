@@ -3,10 +3,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<sec:authentication var="user" property="principal" />
 <html>
 <head>
 <meta charset="utf-8">
-<title>목록</title>
+<title><c:out value="${user}"/>목록</title>
 </head>
 <body>
 	<a href="add">추가하기</a>

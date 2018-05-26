@@ -1,5 +1,8 @@
 package kr.or.hoseo.springproject.chapter6.config;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,11 +11,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	@Autowired
+	private DataSource ds;
+	
+	private final String USER_QUERY = 
+			"SELECT id, pwd, true from users where id = ?";
+	private final String ROLES_QUERY = 
+			"SELECT user_id, role_name from role_user_mapping where user_id = ? ";
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication()
-			.withUser("user").password("1q2w3e4r!!").authorities("ROLE_USER").and()
-			.withUser("admin").password("1q2w3e4r!!").authorities("ROLE_ADMIN");
+		auth.jdbcAuthentication()
+			.dataSource(ds)
+			.usersByUsernameQuery(USER_QUERY)
+			.authoritiesByUsernameQuery(ROLES_QUERY);
 	}
 	
 	@Override
@@ -21,10 +32,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 				.antMatchers("/").permitAll()
 				.antMatchers("/add").hasAuthority("ROLE_ADMIN")
-				.anyRequest().authenticated()
 				.and()
 			.formLogin()
 				.defaultSuccessUrl("/")
+				.loginPage("/login")
+				.loginProcessingUrl("/loginProcess")
+				.usernameParameter("username")
+				.passwordParameter("password")
 				.and()
 			.logout()
 				.logoutUrl("/logout")

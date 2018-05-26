@@ -1,11 +1,20 @@
 package kr.or.hoseo.springproject.chapter6.controller;
 
+import java.security.Principal;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,8 +39,16 @@ public class MusicController {
 	}
 	
 	@RequestMapping("/list")
-	public String list(Model model) {
+	public String list(Model model, HttpServletRequest req, Principal principal) {
+		req.isUserInRole("ROLE_ADMIN");
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
+		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+		boolean authorized = authorities.contains(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		
 		model.addAttribute("list", musicService.getAllMusics());
+		
 		return "list";
 	}
 	
