@@ -6,26 +6,19 @@
 
 	<insert id="insertMusic">
 		INSERT INTO musics
-		(
-		title,
-		artist,
-		uploaddttm,
-		views,
-		likes,
-		unlikes,
-		url,
-		thumbnailpath
-		)
+		(title,	artist,	uploaddttm,	views,	likes,	unlikes, url, thumbnailpath	)
 		VALUES
-		(
-		#{title},
-		#{artist},
-		#{uploadDttm},
-		#{views},
-		#{likes},
-		#{unlikes},
-		#{url},
-		#{thumbnailPath}
-		)
+		(#{title}, #{artist}, #{uploadDttm}, #{views}, #{likes}, #{unlikes},#{url}, #{thumbnailPath})
+		ON DUPLICATE KEY UPDATE
+			title = #{title}
+			,artist = #{artist}
+			,uploadDttm = #{uploadDttm}
+			,views = #{views} 
+			,likes = #{likes}
+			,unlikes = #{unlikes}
 	</insert>
+	
+	<select id="getMusicDetail" resultType="Music" parameterType="String">
+		SELECT * FROM musics where title = #{title}
+	</select>
 </mapper>

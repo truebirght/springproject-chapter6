@@ -13,7 +13,10 @@
 	
 	
 	<logger name="org.springframework.jdbc.core.JdbcTemplate" level="DEBUG" />
-	
+	<!-- Print SQL Log for Mybatis -->
+	<logger name="kr.or.hoseo.springproject.chapter6.dao" level="DEBUG"/>
+	<!-- Cache Debug -->
+	<logger name="org.springframework.cache" level="DEBUG" />
 	<!-- turn OFF all logging (children can override) -->
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />

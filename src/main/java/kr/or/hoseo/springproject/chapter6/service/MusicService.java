@@ -9,4 +9,6 @@ public interface MusicService {
 	public boolean addMusic(Music music);
 	public boolean deleteMusic(Music music);
 	public boolean updateMusic(Music music);
+	public Music getMusicDetail(String title);
+	
 }

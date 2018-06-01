@@ -21,6 +21,6 @@ public class Music implements Serializable{
 	private int likes;
 	private int unlikes;
 	private String url;
-	private MultipartFile thumbnail;
+	private String thumbnail;
 	private String thumbnailPath;
 }

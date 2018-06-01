@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,6 +35,12 @@ public class MusicController {
 		return "list";
 	}
 	
+	@RequestMapping("/detail")
+	public String list(String title, Model model) {
+		model.addAttribute("music", musicService.getMusicDetail(title));
+		return "add";
+	}	
+	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(Model model) {
 		Music music = new Music();
@@ -43,6 +51,7 @@ public class MusicController {
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(@ModelAttribute("music") Music music, BindingResult result) {
+		music.setUploadDttm(new Date());
 		musicService.addMusic(music);
 		return "redirect:list";
 	}
